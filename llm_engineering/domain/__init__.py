@@ -4,5 +4,5 @@ __all__ = [
     "base"
     "exceptions", 
     "documents",
-    "types"
+    "types",
 ]
