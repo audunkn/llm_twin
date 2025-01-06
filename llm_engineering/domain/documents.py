@@ -3,8 +3,8 @@ from typing import Optional
 
 from pydantic import UUID4, Field
 
-from .base import NoSQLBaseDocument
-from .types import DataCategory
+from .base import NoSQLBaseDocument # TODO - implement
+from .types import DataCategory # TODO - implement
 
 
 class UserDocument(NoSQLBaseDocument):
