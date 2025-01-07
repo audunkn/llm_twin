@@ -1,1 +1,1 @@
-# llm_twin
+# Replicating llm twin solution from https://github.com/PacktPublishing/LLM-Engineers-Handbook
