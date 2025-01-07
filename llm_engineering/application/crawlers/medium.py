@@ -22,7 +22,7 @@ class MediumCrawler(BaseSeleniumCrawler):
         logger.info(f"Starting scrapping Medium article: {link}")
 
         self.driver.get(link)
-        self.scroll_page()
+        self.scroll_page() # scrolls until article is fully loaded
 
         soup = BeautifulSoup(self.driver.page_source, "html.parser")
         title = soup.find_all("h1", class_="pw-post-title")
