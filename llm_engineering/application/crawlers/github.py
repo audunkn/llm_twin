@@ -66,6 +66,6 @@ class GithubCrawler(BaseCrawler):
         except Exception:
             raise
         finally:
-            shutil.rmtree(local_temp)
+            shutil.rmtree(local_temp) # temporary directory is removed
 
         logger.info(f"Finished scrapping GitHub repository: {link}")
