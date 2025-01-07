@@ -31,6 +31,13 @@ class RepositoryDocument(Document):
     class Settings:
         name = DataCategory.REPOSITORIES
 
+class PostDocument(Document):
+    image: Optional[str] = None
+    link: str | None = None
+
+    class Settings:
+        name = DataCategory.POSTS
+
 class ArticleDocument(Document):
     link: str
 
