@@ -53,7 +53,7 @@ class BaseSeleniumCrawler(BaseCrawler, ABC):
         pass
 
     def scroll_page(self) -> None:
-        """Scroll through the LinkedIn page based on the scroll limit."""
+        """Scroll through the LinkedIn page based on the scroll limit.""" # Essential function for feeds where the content appears as the user scrolls
         current_scroll = 0
         last_height = self.driver.execute_script("return document.body.scrollHeight")
         while True:
