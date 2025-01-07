@@ -30,3 +30,9 @@ class RepositoryDocument(Document):
 
     class Settings:
         name = DataCategory.REPOSITORIES
+
+class ArticleDocument(Document):
+    link: str
+
+    class Settings:
+        name = DataCategory.ARTICLES
