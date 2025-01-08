@@ -87,6 +87,26 @@ class NoSQLBaseDocument(BaseModel, Generic[T], ABC):
 
             return None
 
+    # The get_or_create() class method attempts to find a document in the database matching the provided filter options. 
+    # If a matching document is found, it is converted into an instance of the class. 
+    # If not, a new instance is created with the filter options as its initial data and saved to the database:        
+    @classmethod
+    def get_or_create(cls: Type[T], **filter_options) -> T:
+        collection = _database[cls.get_collection_name()]
+        try:
+            instance = collection.find_one(filter_options)
+            if instance:
+                return cls.from_mongo(instance)
+
+            new_instance = cls(**filter_options)
+            new_instance = new_instance.save()
+
+            return new_instance
+        except errors.OperationFailure:
+            logger.exception(f"Failed to retrieve document with filter options: {filter_options}")
+
+            raise
+
 
 
 
