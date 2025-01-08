@@ -1,6 +1,6 @@
 from enum import StrEnum
 
-
+# Centralizing all data category types. These variables will act as constants in configuring all ODM classes throughout:
 class DataCategory(StrEnum):
     PROMPT = "prompt"
     QUERIES = "queries"
