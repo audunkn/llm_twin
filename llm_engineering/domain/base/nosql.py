@@ -120,5 +120,33 @@ class NoSQLBaseDocument(BaseModel, Generic[T], ABC):
 
             return False
 
+    # The find() class method searches for a single document in the database that matches the given filter options: 
+    @classmethod
+    def find(cls: Type[T], **filter_options) -> T | None:
+        collection = _database[cls.get_collection_name()]
+        try:
+            instance = collection.find_one(filter_options)
+            if instance:
+                return cls.from_mongo(instance)
+
+            return None
+        except errors.OperationFailure:
+            logger.error("Failed to retrieve document")
+
+            return None
+        
+    # Similarly, the bulk_find() class method retrieves multiple documents matching the filter options. 
+    # It converts each retrieved MongoDB document into a model instance, collecting them into a list:
+    @classmethod
+    def bulk_find(cls: Type[T], **filter_options) -> list[T]:
+        collection = _database[cls.get_collection_name()]
+        try:
+            instances = collection.find(filter_options)
+            return [document for instance in instances if (document := cls.from_mongo(instance)) is not None]
+        except errors.OperationFailure:
+            logger.error("Failed to retrieve documents")
+
+            return []
+
 
 
