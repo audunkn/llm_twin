@@ -159,6 +159,6 @@ class NoSQLBaseDocument(BaseModel, Generic[T], ABC):
             )
 
         return cls.Settings.name
-
+    # We can configure each subclass using the nested Settings class, such as defining the collection name, or anything else specific to that subclass.
 
 
