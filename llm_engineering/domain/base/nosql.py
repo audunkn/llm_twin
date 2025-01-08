@@ -72,6 +72,20 @@ class NoSQLBaseDocument(BaseModel, Generic[T], ABC):
                 dict_[key] = str(value)
 
         return dict_
+    
+    # The save() method allows an instance of the model to be inserted into a MongoDB collection. 
+    # It retrieves the appropriate collection, converts the instance into a MongoDB-compatible document leveraging the to_mongo() method
+    # and attempts to insert it into the database, handling any write errors that may occur:
+    def save(self: T, **kwargs) -> T | None:
+        collection = _database[self.get_collection_name()]
+        try:
+            collection.insert_one(self.to_mongo(**kwargs))
+
+            return self
+        except errors.WriteError:
+            logger.exception("Failed to insert document.")
+
+            return None
 
 
 
