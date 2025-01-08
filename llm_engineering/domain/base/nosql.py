@@ -147,6 +147,18 @@ class NoSQLBaseDocument(BaseModel, Generic[T], ABC):
             logger.error("Failed to retrieve documents")
 
             return []
+    
+    # The get_collection_name() class method determines the name of the MongoDB collection associated with the class. 
+    # It expects the class to have a nested Settings class with a name attribute specifying the collection name. 
+    # If this configuration is missing, an ImproperlyConfigured exception will be raised specifying that the subclass should define a nested Settings class:
+    @classmethod
+    def get_collection_name(cls: Type[T]) -> str:
+        if not hasattr(cls, "Settings") or not hasattr(cls.Settings, "name"):
+            raise ImproperlyConfigured(
+                "Document should define an Settings configuration class with the name of the collection."
+            )
+
+        return cls.Settings.name
 
 
 
