@@ -19,7 +19,7 @@ class UserDocument(NoSQLBaseDocument):
         return f"{self.first_name} {self.last_name}"
 
 # The Document class is introduced as an abstract base model for other documents on top of the NoSQLBaseDocument ODM class. 
-# It includes common attributes like content, platform, and author details, providing a standardized structure for documents that will inherit from it:
+# It includes common attributes like content, platform, and author details, providing a standardized structure for documents that will inherit from it
 # By leveraging Pydantic to define the fields, we have out-of-the-box type validation    
 class Document(NoSQLBaseDocument, ABC):
     content: dict
@@ -28,7 +28,7 @@ class Document(NoSQLBaseDocument, ABC):
     author_full_name: str = Field(alias="author_full_name")
 
 # Specific document type defined by extending the Document class.
-# Represent different category of data, with unique fields and settings that specify its respective collection name in the database:
+# Represent different category of data, with unique fields and settings that specify its respective collection name in the database
 # All the CRUD functionality is delegated to the parent class. 
 # By leveraging Pydantic to define the fields, we have out-of-the-box type validation
 class RepositoryDocument(Document):
@@ -39,7 +39,7 @@ class RepositoryDocument(Document):
         name = DataCategory.REPOSITORIES
 
 # Specific document type defined by extending the Document class.
-# Represent different category of data, with unique fields and settings that specify its respective collection name in the database:
+# Represent different category of data, with unique fields and settings that specify its respective collection name in the database
 # All the CRUD functionality is delegated to the parent class. 
 # By leveraging Pydantic to define the fields, we have out-of-the-box type validation
 class PostDocument(Document):
@@ -50,7 +50,7 @@ class PostDocument(Document):
         name = DataCategory.POSTS
 
 # Specific document type defined by extending the Document class.
-# Represent different category of data, with unique fields and settings that specify its respective collection name in the database:
+# Represent different category of data, with unique fields and settings that specify its respective collection name in the database
 # All the CRUD functionality is delegated to the parent class. 
 # By leveraging Pydantic to define the fields, we have out-of-the-box type validation
 class ArticleDocument(Document):
