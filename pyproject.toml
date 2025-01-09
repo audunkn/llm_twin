@@ -71,6 +71,7 @@ run-digital-data-etl-paul = "poetry run python -m tools.run --run-etl --no-cache
 local-docker-infrastructure-up = "docker compose up -d"
 local-docker-infrastructure-down = "docker compose stop"
 local-zenml-server-down = "poetry run zenml down"
+local-zenml-server-up = "poetry run zenml up"
 local-infrastructure-up = [
     "local-docker-infrastructure-up",
     "local-zenml-server-down",
