@@ -60,3 +60,15 @@ def fetch_all_data(user: UserDocument) -> dict[str, list[NoSQLBaseDocument]]:
                 results[query_name] = []
 
     return results
+
+
+def __fetch_articles(user_id) -> list[NoSQLBaseDocument]:
+    return ArticleDocument.bulk_find(author_id=user_id)
+
+
+def __fetch_posts(user_id) -> list[NoSQLBaseDocument]:
+    return PostDocument.bulk_find(author_id=user_id)
+
+
+def __fetch_repositories(user_id) -> list[NoSQLBaseDocument]:
+    return RepositoryDocument.bulk_find(author_id=user_id)
