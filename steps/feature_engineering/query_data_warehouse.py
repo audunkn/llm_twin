@@ -72,3 +72,25 @@ def __fetch_posts(user_id) -> list[NoSQLBaseDocument]:
 
 def __fetch_repositories(user_id) -> list[NoSQLBaseDocument]:
     return RepositoryDocument.bulk_find(author_id=user_id)
+
+
+# Takes the list of queried documents and authors and counts the number of them relative to each data category:
+def _get_metadata(documents: list[Document]) -> dict:
+    metadata = {
+        "num_documents": len(documents),
+    }
+    for document in documents:
+        collection = document.get_collection_name()
+        if collection not in metadata:
+            metadata[collection] = {}
+        if "authors" not in metadata[collection]:
+            metadata[collection]["authors"] = list()
+
+        metadata[collection]["num_documents"] = metadata[collection].get("num_documents", 0) + 1
+        metadata[collection]["authors"].append(document.author_full_name)
+
+    for value in metadata.values():
+        if isinstance(value, dict) and "authors" in value:
+            value["authors"] = list(set(value["authors"]))
+
+    return metadata
