@@ -1,3 +1,6 @@
+# Using threads to parallelize I/O-bounded calls is good practice in Python, as they are not locked by the Python Global Interpreter Lock (GIL). 
+# In contrast, adding each call to a different process would add too much overhead, as a process takes longer to spin off than a thread.
+# In Python, you want to parallelize things with processes only when the operations are CPU or memory-bound because the GIL affects them
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from loguru import logger
