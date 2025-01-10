@@ -7,6 +7,8 @@ from llm_engineering.domain.chunks import Chunk
 from llm_engineering.domain.embedded_chunks import EmbeddedChunk
 
 
+# Similar to how we cleaned the documents, we delegate the chunking and embedding logic to a dispatcher who knows how to handle each data category. 
+# Note that the chunking dispatcher returns a list instead of a single object, which makes sense as the document is split into multiple chunks.
 @step
 def chunk_and_embed(
     cleaned_documents: Annotated[list, "cleaned_documents"],
