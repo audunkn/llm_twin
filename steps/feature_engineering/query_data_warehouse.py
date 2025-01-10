@@ -8,8 +8,9 @@ from llm_engineering.application import utils
 from llm_engineering.domain.base.nosql import NoSQLBaseDocument
 from llm_engineering.domain.documents import ArticleDocument, Document, PostDocument, RepositoryDocument, UserDocument
 
-
-@step
+# Attempts to get or create a UserDocument instance using the first and last names, appending this instance to the authors list. If the user doesn’t exist, it throws an error
+# Fetches all the raw data for the user from the data warehouse and extends the documents list to include these user documents
+# Computes a descriptive metadata dictionary logged and tracked in ZenML
 def query_data_warehouse(
     author_full_names: list[str],
 ) -> Annotated[list, "raw_documents"]:
