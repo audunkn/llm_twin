@@ -18,6 +18,7 @@ _database = connection.get_database(settings.DATABASE_NAME)
 # which will inherit from the NoSQLBaseDocument class, all the instances where T was used
 # will be replaced with the ArticleDocument type when analyzing the signature of functions 
 # (more on Python generics: https://realpython.com/python312-typing):
+
 T = TypeVar("T", bound="NoSQLBaseDocument") # signature, for inheritance tracking purposes
 
 class NoSQLBaseDocument(BaseModel, Generic[T], ABC):
