@@ -6,6 +6,8 @@ from llm_engineering.application import utils
 from llm_engineering.domain.base import VectorBaseDocument
 
 
+# As each article, post, or code repository sits in a different collection inside the vector DB, 
+# we have to group all the documents based on their data category. Then, we load each group in bulk in the Qdrant vector DB
 @step
 def load_to_vector_db(
     documents: Annotated[list, "documents"],
