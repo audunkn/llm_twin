@@ -116,6 +116,9 @@ class VectorBaseDocument(BaseModel, Generic[T], ABC):
 
         connection.upsert(collection_name=cls.get_collection_name(), points=points)
 
+    # The bulk_find() method enables us to scroll (or list) all the records from a collection. The function below scrolls the Qdrant vector DB, 
+    # which returns a list of data points, which are ultimately mapped to our internal structure using the from_record() method.
+    # The limit parameters control how many items we return at once, and the offset signals the ID of the point from which Qdrant starts returning records.
     @classmethod
     def bulk_find(cls: Type[T], limit: int = 10, **kwargs) -> tuple[list[T], UUID | None]:
         try:
@@ -148,6 +151,8 @@ class VectorBaseDocument(BaseModel, Generic[T], ABC):
 
         return documents, next_offset
 
+    # The last piece of the puzzle is to define a method that performs a vector similarity search on a provided query embedding. 
+    # Like before, we defined a public search() and private _search() method. The search is performed by Qdrant when calling the connection.search() function.
     @classmethod
     def search(cls: Type[T], query_vector: list, limit: int = 10, **kwargs) -> list[T]:
         try:
@@ -217,6 +222,7 @@ class VectorBaseDocument(BaseModel, Generic[T], ABC):
 
         return cls.Config.category
 
+    # The collection name is inferred from the Config class defined in the subclasses inheriting the OVM:
     @classmethod
     def get_collection_name(cls: Type[T]) -> str:
         if not hasattr(cls, "Config") or not hasattr(cls.Config, "name"):
