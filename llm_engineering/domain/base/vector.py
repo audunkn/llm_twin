@@ -84,6 +84,12 @@ class VectorBaseDocument(BaseModel, Generic[T], ABC):
 
         return item
 
+    
+    # The bulk_insert() method maps each document to a point. 
+    # Then, it uses the Qdrant connection instance to load all the points to a given collection in Qdrant. 
+    # If the insertion fails once, it tries to create the collection and do the insertion again. 
+    # Often, it is good practice to split your logic into two functions. One private function contains the logic, in our case _bulk_insert(), 
+    # and one public function handles all the errors and failure scenarios.
     @classmethod
     def bulk_insert(cls: Type[T], documents: list["VectorBaseDocument"]) -> bool:
         try:
