@@ -36,7 +36,7 @@ class EmbeddingDataHandler(ABC, Generic[ChunkT, EmbeddedChunkT]):
         ]
 
         return embedded_chunk
-
+    
     @abstractmethod
     def map_model(self, data_model: ChunkT, embedding: list[float]) -> EmbeddedChunkT:
         pass
@@ -75,7 +75,8 @@ class PostEmbeddingHandler(EmbeddingDataHandler):
             },
         )
 
-
+# the map_model() method, which takes a chunk of input and computes the embeddings in batch mode. 
+ # Its scope is to map this information to an EmbeddedArticleChunk Pydantic entity.
 class ArticleEmbeddingHandler(EmbeddingDataHandler):
     def map_model(self, data_model: ArticleChunk, embedding: list[float]) -> EmbeddedArticleChunk:
         return EmbeddedArticleChunk(
