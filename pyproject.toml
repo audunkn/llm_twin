@@ -65,6 +65,10 @@ build-backend = "poetry.core.masonry.api"
 # Data pipelines
 run-digital-data-etl-maxime = "poetry run python -m tools.run --run-etl --no-cache --etl-config-filename digital_data_etl_maxime_labonne.yaml"
 run-digital-data-etl-paul = "poetry run python -m tools.run --run-etl --no-cache --etl-config-filename digital_data_etl_paul_iusztin.yaml"
+run-digital-data-etl = [
+    "run-digital-data-etl-maxime",
+    "run-digital-data-etl-paul",
+]
 
 run-feature-engineering-pipeline = "poetry run python -m tools.run --no-cache --run-feature-engineering"
 
