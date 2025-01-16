@@ -66,6 +66,8 @@ build-backend = "poetry.core.masonry.api"
 run-digital-data-etl-maxime = "poetry run python -m tools.run --run-etl --no-cache --etl-config-filename digital_data_etl_maxime_labonne.yaml"
 run-digital-data-etl-paul = "poetry run python -m tools.run --run-etl --no-cache --etl-config-filename digital_data_etl_paul_iusztin.yaml"
 
+run-feature-engineering-pipeline = "poetry run python -m tools.run --no-cache --run-feature-engineering"
+
 # Infrastructure
 ## Local infrastructure
 local-docker-infrastructure-up = "docker compose up -d"
