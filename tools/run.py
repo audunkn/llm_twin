@@ -7,6 +7,7 @@ from loguru import logger
 from llm_engineering import settings
 from pipelines import (
     digital_data_etl,
+    feature_engineering,
 )
 
 
