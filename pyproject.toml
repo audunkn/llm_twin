@@ -85,3 +85,4 @@ set-local-stack = "poetry run zenml stack set default"
 set-aws-stack = "poetry run zenml stack set aws-stack"
 set-asynchronous-runs = "poetry run zenml orchestrator update aws-stack --synchronous=False"
 zenml-server-disconnect = "poetry run zenml disconnect"
+
