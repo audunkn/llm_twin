@@ -71,6 +71,7 @@ run-digital-data-etl = [
 ]
 
 run-feature-engineering-pipeline = "poetry run python -m tools.run --no-cache --run-feature-engineering"
+run-generate-instruct-datasets-pipeline = "poetry run python -m tools.run --no-cache --run-generate-instruct-datasets"
 
 # Infrastructure
 ## Local infrastructure
